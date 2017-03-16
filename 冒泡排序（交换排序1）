@@ -1,33 +1,37 @@
-public class BubbleSort{
-    public static void main(String[] args){
-        int[] arr = {1,4,6,3,9};
-        printArr(arr);
-        bubbleSort(arr);
-        printArr(arr);
-    }
-    
-    public static void bubbleSort(int[] arr)
-    {
-        for (int x=0;x<arr.length-1 ;x++ ) //外层循环控制排序趟数 n-1
-        {
-            for (int y=0;y<arr.length-x-1 ;y++ ) //内层循环控制每一趟排序多少次 n-i
-            {
-                if (arr[y]>arr[y+1]) 
-                {
-                    int temp = arr[y];
-                    arr[y] = arr[y+1];
-                    arr[y+1] = temp;
-                }
-   
-            }     
-        }
-    }
-    
-    public static void printArr(int[] arr){
-        System.out.print("[");
-        for (int i=0;i<arr.length-1 ;i++ ) {
-            System.out.print(arr[i]+",");
-        }
-        System.out.println(arr[arr.length-1]+"]");
-    }
+#include <iostream>  
+using namespace std;  
+
+void swap(int &a ,int &b){
+	int temp =a;
+	a = b;
+	b= temp;
 }
+void bubble_sort(int a[],int len)  
+{  
+	for(int i=0;i<len-1;i++)
+	{
+		for(int j=0;j<len-i-1;j++)
+		{
+			if(a[j]>a[j+1])
+				swap(a[j],a[j+1]);
+		}
+
+	} 
+     
+}  
+int main()  
+{  
+    int a[] = {100,8,15 ,37,26,13,27,49,55,14};
+    cout<<"Before sort: ";  
+    for(int i =0 ; i<10;i++)  
+        cout<<a[i]<<" ";  
+    cout<<endl;
+    int len = sizeof(a)/sizeof(a[0]);
+    bubble_sort(a,len); 
+    cout<<"After sort: ";  
+    for(int i =0 ; i<10;i++)  
+        cout<<a[i]<<" ";  
+    cout<<endl;  
+}
+
+ 
