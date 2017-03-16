@@ -1,80 +1,6 @@
-public class QuickSort {
-
-	public static void main(String[] args){
-        int[] arr = {49,38,65,97,76,13,27,49,78,34,12,64,5,4,62,99,98,54,56,17,18,23,34,15,35,25,53,51}; 
-        printArr(arr);
-        quickSort(arr);
-        printArr(arr);
-    }
-    
-	public static int getMiddle(int [] list,int low,int high)
-  {  
-           int tmp = list[low];    //数组的第一个作为中轴     
-           
-           while (low < high) {     
- 
-               while (low < high && list[high] >= tmp) {     
- 
-                   high--;     
- 
-               }     
- 
-               list[low] = list[high];   //比中轴小的记录移到低端     
- 
-               while (low < high && list[low] <= tmp) {     
- 
-                   low++;     
- 
-               }     
- 
-               list[high] = list[low];   //比中轴大的记录移到高端     
- 
-           }     
- 
-          list[low] = tmp;              //中轴记录到尾     
- 
-           return low;                   //返回中轴的位置     
- 
-   }     
-	      
-	 public static void sort(int []list,int low,int high)
-   {  
-	        if(low<high)  
-	        {  
-	            int middle=getMiddle(list, low, high);  //将list数组进行一分为二
-	            sort(list, low, middle-1);      //对低字表进行递归排序  
-	            sort(list, middle+1, high);      //对高字表进行递归排序 
-	        }  
-	 }  
-	 
-	 public static void quickSort(int[] arr) {       
-	            
-	        if (arr.length > 0) {    //查看数组是否为空       
-	  
-	            sort(arr, 0, arr.length - 1);       
-	  
-	        }        
-	 } 
-	    
-   public static void printArr(int[] arr){
-        System.out.print("[");
-        for (int i=0;i<arr.length-1 ;i++ ) {
-            System.out.print(arr[i]+",");
-        }
-        System.out.println(arr[arr.length-1]+"]");
-   }
-
-}
-
-
-
-
 #include <iostream>  
-  
 using namespace std;  
-  
-int a[] = {100,8,15 ,37,26,13,27,49,55,14};  
-  
+
 void quick_sort(int a[], int left, int right)  
 {  
     if(left>right)  
@@ -87,19 +13,13 @@ void quick_sort(int a[], int left, int right)
     while(i<j)  
     {  
         while(i<j&&a[j]>temp) //顺序很重要，要先从右边开始找 
-            j--;  
+            j--;
+	a[i++] = a[j];
         while(i<j&&a[i]<temp)  //再找左边的
             i++;
-       if(i<j) 				//交换两个数在数组中的位置
-       { 
-	    int t=a[i]; 
-	    a[i]=a[j]; 
-	    a[j]=t; 
-       } 
+	a[j--] = a[i];
     }
-    //最终将基准数归位
-    //a[left]=a[i];
-    a[i]=temp;
+    a[i]=temp;	//最终将基准数归位
     
     quick_sort(a, left, i-1);  
     quick_sort(a, i+1, right);  
@@ -107,6 +27,7 @@ void quick_sort(int a[], int left, int right)
 }  
 int main()  
 {  
+    int a[] = {100,8,15 ,37,26,13,27,49,55,14};
     cout<<"Before sort: ";  
     for(int i =0 ; i<10;i++)  
         cout<<a[i]<<" ";  
