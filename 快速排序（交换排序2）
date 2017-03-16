@@ -14,10 +14,10 @@ void quick_sort(int a[], int low, int high)
     {  
         while(i<j&&a[j]>temp) //顺序很重要，要先从右边开始找 
             j--;
-	a[i++] = a[j];
+	a[i] = a[j];
         while(i<j&&a[i]<temp)  //再找左边的
             i++;
-	a[j--] = a[i];
+	a[j] = a[i];
     }
     a[i]=temp;	//最终将基准数归位
     
