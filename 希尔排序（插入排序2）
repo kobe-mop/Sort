@@ -1,57 +1,44 @@
-public class ShellSort {
+#include <iostream>  
+using namespace std;  
 
-	public static void main(String[] args) {
-		int[] arr={49,38,65,97,76,13,27,49,78,34};  
-		printArr(arr);
-		shellSort(arr);
-		printArr(arr);
-
+void shell_sort(int a[],int len)  
+{  	
+	for(int gap =len/2;gap>=1;gap=gap/2) //获得gap值 
+	{  
+	   for(int x=0;x<gap;x++) //当前gap，需要循环gap次插入排序 
+	   {  
+	       for(int i=x+gap;i<len;i+=gap) //每一次插入排序 
+	       {  
+	          if(a[i]<a[i-gap])
+	          {
+			int j=i-gap;  
+		        int temp=a[i];  
+		        for(;j>=0&&a[j]>temp;j-=gap)
+			{  
+		          a[j+gap]=a[j];  
+	                }
+				
+			a[j+gap]=temp;   
+		   }	   
+	        } 
+	        
+	   }		
 	}
-	
-	public static void shellSort(int[] arr){  		  
-	  
-	    double d1=arr.length;    
-	    int temp=0;  
-	    while(true){  
-	  
-	       d1= Math.ceil(d1/2);  
-	  
-	       int d=(int) d1;  
-	  
-	       for(int x=0;x<d;x++){  
-	  
-	           for(int i=x+d;i<arr.length;i+=d){  
-	  
-	              int j=i-d;  
-	  
-	              temp=arr[i];  
-	  
-	              for(;j>=0&&temp<arr[j];j-=d){  
-	  
-	              arr[j+d]=arr[j];  
-	  
-	              }  
-	  
-	              arr[j+d]=temp;  
-	  
-	           }  
-	  
-	       }  
-	  
-	       if(d==1)  
-	  
-	           break;  
-	  
-	    }  
-	  
-	}  
-
-	public static void printArr(int[] arr){
-	    System.out.print("[");
-	    for (int i=0;i<arr.length-1 ;i++ ) {
-	        System.out.print(arr[i]+",");
-	    }
-	    System.out.println(arr[arr.length-1]+"]");
-	}
-
+	 
+}  
+int main()  
+{  
+    int a[] = {100,8,15 ,37,26,13,27,49,55,14};
+    cout<<"Before sort: ";  
+    for(int i =0 ; i<10;i++)  
+        cout<<a[i]<<" ";  
+    cout<<endl;
+    int len = sizeof(a)/sizeof(a[0]);
+    shell_sort(a,len); 
+    cout<<"After sort: ";  
+    for(int i =0 ; i<10;i++)  
+        cout<<a[i]<<" ";  
+    cout<<endl;  
 }
+
+ 
