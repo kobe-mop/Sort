@@ -15,19 +15,21 @@ void swap(int &a ,int &b){
 }
 void bubble_sort(int a[],int len)  
 {  
-	bool flag = true;
-	for(int i=0;i<len-1 && flag == true;i++)
+	for(int i=0;i<len-1;i++)
 	{
-		flag = false;
+		int count =0;
 		for(int j=0;j<len-i-1;j++)
 		{
 			if(a[j]>a[j+1])
 			{
 			    swap(a[j],a[j+1]);
-			    flag = true;
+			    count++;
 			}
 
 		}
+		
+		if(count == 0)
+			break;
 
 	} 
      
