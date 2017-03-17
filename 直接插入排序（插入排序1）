@@ -1,33 +1,41 @@
-public class InsertSort {
+#include <iostream>  
+using namespace std;  
 
-	public static void main(String[] args) {
-		
-		int[] arr={49,38,65,97,76,13,27,49,78,34};  
-		printArr(arr);
-		insertSort(arr);
-		printArr(arr);
-	}
-	
-	public static void insertSort(int[] arr){  
-        for(int i = 1;i < arr.length; i ++)
+void insert_sort(int a[],int len)  
+{  
+	for(int i=1;i<len;i++)
 	{
-            if(arr[i] < arr[i-1]) //注意[0,i-1]都是有序的。如果待插入元素比arr[i-1]还大则无需再与[i-1]前面的元素进行比较了，反之则进入if语句
-	    {
-                int temp = arr[i];
-                int j = i-1;
-                for(; j >= 0 && arr[j] > temp; j --)
-		{                
-                        arr[j+1] = arr[j];//把比temp大或相等的元素全部往后移动一个位置            
-                }
-                arr[j+1] = temp;//把待排序的元素temp插入腾出位置的(j+1)
-            }         
-	}  
-	
-    public static void printArr(int[] arr){
-        System.out.print("[");
-        for (int i=0;i<arr.length-1 ;i++ ) {
-            System.out.print(arr[i]+",");
-        }
-        System.out.println(arr[arr.length-1]+"]");
-    }
+		
+		if(a[i]<a[i-1])//注意[0,i-1]都是有序的。如果待插入元素比arr[i-1]还大则无需再与[i-1]前面的元素进行比较了，反之则进入if语句
+		{
+		
+			int j = i-1;
+			int tmp = a[i];
+			
+			for(;j>=0&&a[j]>tmp;j--)
+			{
+				a[j+1]=a[j]; //把比temp大或相等的元素全部往后移动一个位置 
+			}
+			
+			a[j+1] =tmp;   //把待排序的元素temp插入腾出位置的(j+1)
+		}	
+
+	} 
+     
+}  
+int main()  
+{  
+    int a[] = {100,8,15 ,37,26,13,27,49,55,14};
+    cout<<"Before sort: ";  
+    for(int i =0 ; i<10;i++)  
+        cout<<a[i]<<" ";  
+    cout<<endl;
+    int len = sizeof(a)/sizeof(a[0]);
+    insert_sort(a,len); 
+    cout<<"After sort: ";  
+    for(int i =0 ; i<10;i++)  
+        cout<<a[i]<<" ";  
+    cout<<endl;  
 }
+
+ 
